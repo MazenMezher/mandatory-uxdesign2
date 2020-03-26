@@ -3,12 +3,9 @@ import React, { Component } from 'react'
 export class Hamburger extends Component {
     render() {
         return (
-            <div>
-                    <nav role="navigation">
-                <div id="menuToggle">
-
+             <>
+                <div id="nav">
                     <input type="checkbox" />
-
                     <span></span>
                     <span></span>
                     <span></span>
@@ -20,8 +17,8 @@ export class Hamburger extends Component {
                     <a href="#"><li>Contact</li></a>
                     </ul>
             </div>
-            </nav>
-            </div>
+            </>
+            
         )
     }
 }
