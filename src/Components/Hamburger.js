@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class Hamburger extends Component {
     render() {
         return (
-             <>
+            <>
                 <div id="nav">
                     <input type="checkbox" />
                     <span></span>
