@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Hamburger from "../Components/Hamburger.js"
-import About from "../Components/NavPages/About.js"
-
+import Quiz from "../Components/Quiz.js"
 import "../Css/Menu.css"
 import "../Css/Phone.css"
 import "../App.css"
@@ -12,10 +10,10 @@ class Main extends Component {
         super(props)
     
         this.state = {
-             clickedAbout: false,
-             clickedStats: false,
-             
-             checked: false,
+            clickedAbout: false,
+            clickedStats: false,
+            
+            checked: false,
         }
     }
     
@@ -85,9 +83,7 @@ class Main extends Component {
                                 <h1>Quiz Master</h1>
                         </header>
                             <main>
-                                <button className="CenterButton">
-                                    Start Quiz
-                                </button>
+                                <Quiz />
                                 <div className={shownAbout}>
                                     <p>
                                         <button onClick={this.exitButton} >X</button>
