@@ -82,3 +82,5 @@ class Quiz extends Component {
 }
 
 export default Quiz
+
+// lägga in radio buttons i li och sedan använda onclick logik för kolla om det är === correct_answer
