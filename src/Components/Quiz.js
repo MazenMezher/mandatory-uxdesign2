@@ -17,7 +17,7 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        axios(`https://opentdb.com/api.php?amount=10`)
+        axios(`https://opentdb.com/api.php?amount=10&type=multiple`)
         .then(res => {
             res.data.results.map(question => {
 
