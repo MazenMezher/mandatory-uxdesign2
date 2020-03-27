@@ -11,10 +11,10 @@ export class Hamburger extends Component {
                     <span></span>
                     
                     <ul id="menu">
-                    <a href="#"><li>Home</li></a>
-                    <a href="#"><li>About</li></a>
-                    <a href="#"><li>Info</li></a>
-                    <a href="#"><li>Contact</li></a>
+                        <li>Home</li>
+                        <li>About</li>
+                        <li>Info</li>
+                        <li>Contact</li>
                     </ul>
             </div>
             </>
