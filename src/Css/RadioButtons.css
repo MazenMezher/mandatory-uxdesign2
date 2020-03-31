@@ -1,0 +1,19 @@
+.radioStyle{
+    position: relative;
+    opacity: 1;
+    height: 20px;
+    width: 20px;
+    
+}
+
+.labelSize{
+    font-size: 20px;
+}
+
+.HideModalButton{
+    display: none;
+}
+
+.removeButton {
+    display: none;
+  }

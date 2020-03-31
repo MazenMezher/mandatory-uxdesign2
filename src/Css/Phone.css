@@ -79,6 +79,82 @@ main{
     cursor: pointer;
   } */
 
-  .removeButton {
+  
+
+
+
+
+
+  .radio-box {
+    position: relative;
+    cursor: pointer;
+    
+}
+
+.firstRadio {
+    margin-bottom: 50px;
+}
+
+.secondRadio {
+    margin-top: 50px;
+}
+
+
+.Radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    
+}
+
+
+.radio-checkmark {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 2px solid #00000089;
+}
+
+
+.radio-box:hover .Radio ~ .radio-checkmark {
+    background-color: #ccc;
+}
+
+
+.radio-box .Radio:checked ~ .radio-checkmark {
+    background-color: #eee;
+    border: 2px solid #6200eeff;
+}
+
+
+.radio-checkmark:after {
+    content: "";
+    position: absolute;
     display: none;
-  }
+}
+
+
+.Radio:checked ~ .radio-checkmark:after {
+    display: block;
+}
+
+
+.radio-checkmark:after {
+    left: 3px;
+    top: 3px;
+    width: 10.5px;
+    height: 10.5px;
+    border-radius: 50%;
+    background: #6200eeff;
+    transition: all 2s;
+}
+
+.radioBigbox {
+    margin: auto;
+}
+
+.radioTest {
+  z-index: 20;
+}

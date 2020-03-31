@@ -117,3 +117,37 @@ input{
     z-index: 2; /* and place it over the hamburger */
     /* -webkit-touch-callout: none; */
   }
+
+  .clickedAbout {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px red solid;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+   
+    display: block;
+  }
+  
+  .notClicked {
+    display: none;
+  }
+  
+  .clickedStats {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px red solid;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 20;
+    
+    display: block;
+  }
