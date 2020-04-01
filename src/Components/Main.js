@@ -64,6 +64,12 @@ class Main extends Component {
         } else {
             showStats = "notClicked"
         }
+
+        let totalRounds = JSON.parse(localStorage.getItem("totalRounds"));
+        let totalScore = JSON.parse(localStorage.getItem("totalScore"));
+
+        let wrongAnswers = totalRounds * 10 - totalScore;
+
         return (
                 <div className="smartphone">
                     <div className="content">
@@ -93,13 +99,11 @@ class Main extends Component {
 
                                 <div className={showStats}>
                                 <button onClick={this.exitButton}>X</button>
-                                    <p>Games Played = 10</p>
+                                    <p>Games Played = {totalRounds}</p>
                                     <br/>
-                                    <p>Correct Answers = 95</p>
+                                    <p>Correct Answers = {totalScore}</p>
                                     <br/>
-                                    <p>Incorrect Answers = 37</p>
-                                    <br/>
-                                    <p>Correct Percentage = 72%</p>
+                                    <p>Incorrect Answers = {wrongAnswers}</p>
                                 </div>
                             </main>
                     </div>

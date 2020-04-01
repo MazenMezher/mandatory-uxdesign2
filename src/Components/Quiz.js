@@ -7,6 +7,7 @@ import "../Css/RadioButtons.css"
 
 
 let rightAnswer = 0;
+let totalGames = 0;
 class Quiz extends Component {
     constructor(props) {
         super(props)
@@ -58,6 +59,24 @@ class Quiz extends Component {
     this.setState({ answered: [] });
     this.setState({ rightAnswers: [] });
     this.setState({ correctAnswers: '' });
+    
+    totalGames++
+
+    let totalRounds = JSON.parse(localStorage.getItem("totalRounds"));
+
+    if (totalRounds !== null) {
+      if (totalRounds === 0) {
+        localStorage.setItem("totalRounds", JSON.stringify(1));
+      }
+      else if (totalRounds >= 1) {
+        let played = JSON.parse(localStorage.getItem("totalRounds"));
+        let updatePlayed = played += 1;
+        localStorage.setItem("totalRounds", JSON.stringify(updatePlayed));
+      }
+    }
+    else {
+      localStorage.setItem("totalRounds", JSON.stringify(1));
+    }
 
     axios('https://opentdb.com/api.php?amount=10&type=multiple')
     .then(res => {
@@ -139,7 +158,21 @@ clearGame = () => {
       }
     }
 
-    console.log(answers);
+    let totalScore = JSON.parse(localStorage.getItem("totalScore"));
+
+    if (totalScore !== null) {
+      if (totalScore === 0) {
+        localStorage.setItem("totalScore", JSON.stringify(answers));
+      } else if (totalScore >= 1) {
+        let newScore = JSON.parse(localStorage.getItem("totalScore"));
+        let totalUpdatedScore = newScore + answers;
+        localStorage.setItem("totalScore", JSON.stringify(totalUpdatedScore));
+      }
+    }
+    else {
+      localStorage.setItem("totalScore", JSON.stringify(answers));
+    }
+    
     this.setState({ correctAnswers: answers });
   }
 
