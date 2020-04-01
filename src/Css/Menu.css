@@ -72,7 +72,7 @@
 /* Make this absolute positioned at the top left of the screen */
 #menu{
   position: absolute;
-  opacity: 0;
+  visibility: hidden;
   background: #ededed;
   padding-top: 50px;
   top: -20px;
@@ -88,16 +88,20 @@
   transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-#menu li{
+#nav:focus {
+  outline: outset;
+}
+
+#menu button{
   padding: 10px 0;
   font-size: 22px;
-  opacity: 1;
+  display: block;
 }
 
 /* And let's slide it in from the left */
 #nav input:checked ~ ul{
   transform: none;
-  display: block;
+  visibility: visible;
  opacity: 0.9;
 }
 
@@ -106,7 +110,7 @@ span{
     transform: translate(2px, 2px);
 }
 
-input{
+.focusNavItems{
     position: absolute;
     top: -5px;
     left: -4px;
@@ -116,6 +120,10 @@ input{
     opacity: 0; /* hide this */
     z-index: 2; /* and place it over the hamburger */
     /* -webkit-touch-callout: none; */
+  }
+
+  .focusNavItems:focus{
+    opacity: 0.1;
   }
 
   .clickedAbout {
@@ -151,3 +159,10 @@ input{
     
     display: block;
   }
+
+  .focusNavItems:focus{
+    outline: outset;
+    
+  }
+
+  

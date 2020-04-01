@@ -5,7 +5,6 @@ import { Button, Modal } from 'react-bootstrap';
 import "../Css/Phone.css"
 import "../Css/RadioButtons.css"
 
-
 let rightAnswer = 0;
 let totalGames = 0;
 class Quiz extends Component {
@@ -27,10 +26,11 @@ class Quiz extends Component {
     removeGameButton = () => {
         this.setState({gameStart: true})
     }
-
+    
     onInputClick = (e) => {
         console.log(e.target)
     }
+    
 
     checkAnswers = (svar, myChoice) => {
         // console.log(svar);
@@ -139,7 +139,6 @@ clearGame = () => {
 
   handleModal = () => {
     this.setState({ showmodalBox: !this.state.showmodalBox });
-
     this.setState({ openDialog: true });
 
     let allAnswers = this.state.answered;
@@ -176,7 +175,6 @@ clearGame = () => {
     this.setState({ correctAnswers: answers });
   }
 
-
     render() {
         const {gameStart, quizz, showmodalBox, correctAnswers} = this.state
         let removeButton = "";
@@ -188,11 +186,10 @@ clearGame = () => {
             hideModalButton = "HideModalButton"
             removeButton = ""
         }
-        // console.log(quizz)
-        
+
         return (
             <>
-            <button onClick={this.setGameBoard} className={removeButton}>Start Game</button>  
+            <button onClick={this.setGameBoard} className={removeButton} >Start Game</button>  
                 {
                     quizz.map(x => {
                         const entities = {
@@ -204,49 +201,46 @@ clearGame = () => {
                             "&eacute;": "é",
                             "&amp;": "&" ,
                             "&uuml;": "ü"
-                          }
+                        }
                 
-                          let svar = x.realAnswer.replace(/&#?\w+;/g, match => entities[match]);
+                        let svar = x.realAnswer.replace(/&#?\w+;/g, match => entities[match]);
                 
-                          let questions = x.question.replace(/&#?\w+;/g, match => entities[match]);
-                          let choice1 = x.choice1.replace(/&#?\w+;/g, match => entities[match]);
-                          let choice2 = x.choice2.replace(/&#?\w+;/g, match => entities[match]);
-                          let choice3 = x.choice3.replace(/&#?\w+;/g, match => entities[match]);
-                          let choice4 = x.choice4.replace(/&#?\w+;/g, match => entities[match]);
+                        let questions = x.question.replace(/&#?\w+;/g, match => entities[match]);
+                        let choice1 = x.choice1.replace(/&#?\w+;/g, match => entities[match]);
+                        let choice2 = x.choice2.replace(/&#?\w+;/g, match => entities[match]);
+                        let choice3 = x.choice3.replace(/&#?\w+;/g, match => entities[match]);
+                        let choice4 = x.choice4.replace(/&#?\w+;/g, match => entities[match]);
                 
                         return (
                             <>
-            {/* <form> */}
             <p className="question">{questions}</p>
             <ul className="answer-ul">
-              <div className="answers-div">
-                <input type="radio" id={choice1} className="radioStyle" name="question" value={choice1} onChange={() => this.onChange(svar, choice1)} />
+            <div className="answers-div">
+                <input  type="radio" id={choice1} className="radioStyle" name="question" value={choice1} onChange={() => this.onChange(svar, choice1)} />
                 <label htmlFor={choice1} className="labelSize">{choice1}</label>
-              </div>
+            </div>
 
-              <div className="answers-div">
-                <input type="radio" id={choice2} className="radioStyle" name="question" value={choice2} onChange={() => this.onChange(svar, choice2)} />
+            <div className="answers-div">
+                <input  type="radio" id={choice2} className="radioStyle" name="question" value={choice2} onChange={() => this.onChange(svar, choice2)} />
                 <label htmlFor={choice2} className="labelSize">{choice2}</label>
-              </div>
+            </div>
 
-              <div className="answers-div">
-                <input type="radio" id={choice3} className="radioStyle" name="question" value={choice3} onChange={() => this.onChange(svar, choice3)} />
+            <div className="answers-div">
+                <input  type="radio" id={choice3} className="radioStyle" name="question" value={choice3} onChange={() => this.onChange(svar, choice3)} />
                 <label htmlFor={choice3} className="labelSize">{choice3}</label>
-              </div>
+            </div>
 
-              <div className="answers-div">
+            <div className="answers-div">
                 <input type="radio" id={choice4} className="radioStyle" name="question" value={choice4} onChange={() => this.onChange(svar, choice4)} />
                 <label htmlFor={choice4} className="labelSize">{choice4}</label>
-              </div>
+            </div>
             </ul>
-            {/* </form> */}
-            {/* <button className={doneBtnClass} onClick={() => this.doneBtn(x)}>{doneBtnTxt}</button> */}
             </>
-                        )
+                    )
                     })
                 }
                 <div className={hideModalButton}>
-                <Button onClick={this.handleModal}>Open Modal</Button>
+                <Button onClick={this.handleModal}>Submit answers</Button>
                 <Modal show={showmodalBox} onHide={this.handleModal} backdrop="static">
                     <Modal.Header closeButton>Modal Head</Modal.Header>
                     <Modal.Body>
@@ -263,11 +257,11 @@ clearGame = () => {
                     </Modal.Footer>
                 </Modal>
                 </div>
+
+                {/* chromevox screen reader */}
             </>
         )
     }
 }
 
 export default Quiz
-
-// lägga in radio buttons i li och sedan använda onclick logik för kolla om det är === correct_answer
