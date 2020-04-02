@@ -16,7 +16,9 @@ class Stats extends Component {
         this.props.changeFocusTrap()
       }
 
-
+      clearLocalStorage = () => {
+        localStorage.clear()
+    }
     render() {
         let totalRounds = JSON.parse(localStorage.getItem("totalRounds"));
         let totalScore = JSON.parse(localStorage.getItem("totalScore"));
@@ -32,6 +34,7 @@ class Stats extends Component {
             <h4 tabIndex="0">Total Game Rounds: <b>{totalRounds}</b></h4>
             <h4 tabIndex="0">Total Correct Score: <b>{totalScore}</b></h4>
             <h4 tabIndex="0">Total Incorrect Score: <b>{wrongAnswers}</b></h4>
+            <button tabIndex="0" onClick={this.clearLocalStorage} aria-label={"Clear Score Button"}>Clear Score</button>
             </Modal.Body>
             </Modal>
       </>

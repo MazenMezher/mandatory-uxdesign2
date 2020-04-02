@@ -35,6 +35,10 @@ class Main extends Component {
     uncheck = () => {
         this.setState({checked: true}) 
     }
+
+    clearLocalStorage = () => {
+        localStorage.clear()
+    }
     render() {
         return (
                 <div className="smartphone">
