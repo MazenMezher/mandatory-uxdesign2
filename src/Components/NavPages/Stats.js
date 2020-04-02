@@ -24,6 +24,7 @@ class Stats extends Component {
         let wrongAnswers = totalRounds * 10 - totalScore;
         return (
             <>
+            {/* Bootstrap modal dialog for my stat page */}
             <Button  onClick={this.handleModal}>Stats</Button>
             <Modal show={this.state.show} onHide={this.handleModal} backdrop="static">
             <Modal.Header closeButton><h2 tabIndex="0">Stats</h2></Modal.Header>

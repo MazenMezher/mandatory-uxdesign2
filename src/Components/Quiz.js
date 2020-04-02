@@ -12,43 +12,31 @@ class Quiz extends Component {
         super(props)
     
         this.state = {
-            gameStart: false,
+            
             quizz: [],
-
             answered: [],
             rightAnswers: [],
-            correctAnswers: '',
 
-            showmodalBox: false
+            correctAnswers: '',
+            showmodalBox: false,
+            gameStart: false,
         }
     }
     
     removeGameButton = () => {
         this.setState({gameStart: true})
     }
-    
-    onInputClick = (e) => {
-        console.log(e.target)
-    }
-    
 
-    checkAnswers = (svar, myChoice) => {
-        // console.log(svar);
-        // console.log(myChoice);
+    checkAnswers = (correctChoice, myChoice) => {
     
         let answer
     
-        if (svar === myChoice) {
-        console.log('rätt svar');
+        if (correctChoice === myChoice) {
           rightAnswer++;
           answer = myChoice;
         } else {
-        //   console.log('fel svar!');
           answer = null;
         }
-    
-        console.log(rightAnswer);
-        // console.log(answer);
       }
 
     setGameBoard = () => {
@@ -81,34 +69,25 @@ class Quiz extends Component {
     axios('https://opentdb.com/api.php?amount=10&type=multiple')
     .then(res => {
       res.data.results.map(q => {
-        // console.log(q);
 
         const newQuestion = {
           question: q.question
         };
 
         const answerChoises = [ ...q.incorrect_answers ];
-        // console.log(answerChoises);
 
         newQuestion.answer = Math.floor(Math.random() * 3) + 1;
         newQuestion.realAnswer = q.correct_answer;
-        // console.log(newQuestion);
-
 
         answerChoises.splice(
           newQuestion.answer -1,
           0,
           q.correct_answer
         );
-        // console.log(answerChoises);
 
         answerChoises.forEach((choice, index) => {
           newQuestion['choice' + (index + 1)] = choice;
         });
-
-        // console.log(answerChoises);
-        // console.log(newQuestion);
-
         let myQuizzArr = this.state.quizz;
         myQuizzArr.push(newQuestion);
 
@@ -126,15 +105,15 @@ clearGame = () => {
     this.setState({ correctAnswers: '' });
   }
 
-  onChange = (svar, myChoice) => {
+  onChange = (correctChoice, myChoice) => {
+
+    let myRightAnswers = this.state.rightAnswers;
+    myRightAnswers.push(correctChoice);
+    this.setState({ rightAnswers: myRightAnswers });
 
     let myAnswers = this.state.answered;
     myAnswers.push(myChoice);
     this.setState({ answered: myAnswers });
-
-    let myRightAnswers = this.state.rightAnswers;
-    myRightAnswers.push(svar);
-    this.setState({ rightAnswers: myRightAnswers });
   }
 
   handleModal = () => {
@@ -147,13 +126,8 @@ clearGame = () => {
     let answers = 0;
 
     for (let i = 0; i < allAnswers.length; i++) {
-      // console.log(allAnswers[i]);
-      // console.log(i);
       if (allrightAnswers[i] === allAnswers[i]) {
-        console.log('right answer');
         answers++
-      } else {
-        console.log('false answer');
       }
     }
 
@@ -176,6 +150,7 @@ clearGame = () => {
   }
 
     render() {
+      // Logic to hide the button once the game starts
         const {gameStart, quizz, showmodalBox, correctAnswers} = this.state
         let removeButton = "";
         let hideModalButton = ""
@@ -189,6 +164,7 @@ clearGame = () => {
 
         return (
             <>
+            {/* A button that fetches 10 random questions and maps them out and on the onclick this button becomes hidden */}
             <button onClick={this.setGameBoard} className={removeButton} >Start Game</button>  
                 {
                     quizz.map(x => {
@@ -202,8 +178,8 @@ clearGame = () => {
                             "&amp;": "&" ,
                             "&uuml;": "ü"
                         }
-                
-                        let svar = x.realAnswer.replace(/&#?\w+;/g, match => entities[match]);
+                // Replacing random wierd symbols
+                        let correctChoice = x.realAnswer.replace(/&#?\w+;/g, match => entities[match]);
                         let questions = x.question.replace(/&#?\w+;/g, match => entities[match]);
                         let choice1 = x.choice1.replace(/&#?\w+;/g, match => entities[match]);
                         let choice2 = x.choice2.replace(/&#?\w+;/g, match => entities[match]);
@@ -212,27 +188,28 @@ clearGame = () => {
                 
                         return (
                             <>
+            {/* A form used to render in my questions with four answer choices that has a radio button each as a choice */}
             <form>
             <p className="question" aria-label={"The question is" + questions} tabIndex="0">{questions}</p>
             <ul className="answer-ul">
               
             <div className="answers-div">
-                <input aria-label={"radio button" + choice1} type="radio" id={choice1} className="radioStyle" name="question" value={choice1} onChange={() => this.onChange(svar, choice1)} />
+                <input aria-label={"Choice 1 is" + choice1} type="radio" id={choice1} className="radioStyle" name="question" value={choice1} onChange={() => this.onChange(correctChoice, choice1)} />
                 <label htmlFor={choice1} className="labelSize">{choice1}</label>
             </div>
 
             <div className="answers-div">
-                <input aria-label={"radio button" + choice2}  type="radio" id={choice2} className="radioStyle" name="question" value={choice2} onChange={() => this.onChange(svar, choice2)} />
+                <input aria-label={"Choice 2 is" + choice2}  type="radio" id={choice2} className="radioStyle" name="question" value={choice2} onChange={() => this.onChange(correctChoice, choice2)} />
                 <label htmlFor={choice2} className="labelSize">{choice2}</label>
             </div>
 
             <div className="answers-div">
-                <input aria-label={"radio button" + choice3}  type="radio" id={choice3} className="radioStyle" name="question" value={choice3} onChange={() => this.onChange(svar, choice3)} />
+                <input aria-label={"Choice 3 is" + choice3}  type="radio" id={choice3} className="radioStyle" name="question" value={choice3} onChange={() => this.onChange(correctChoice, choice3)} />
                 <label htmlFor={choice3} className="labelSize">{choice3}</label>
             </div>
 
             <div className="answers-div">
-                <input aria-label={"radio button" + choice4} type="radio" id={choice4} className="radioStyle" name="question" value={choice4} onChange={() => this.onChange(svar, choice4)} />
+                <input aria-label={"Choice 4 is" + choice4} type="radio" id={choice4} className="radioStyle" name="question" value={choice4} onChange={() => this.onChange(correctChoice, choice4)} />
                 <label htmlFor={choice4} className="labelSize">{choice4}</label>
             </div>
             </ul>
@@ -241,16 +218,17 @@ clearGame = () => {
                     )
                     })
                 }
+                {/* Bootstrap button to submit my answers and get a feedback on how well you did aswell questions to play again or quit */}
                 <div className={hideModalButton}>
                 <Button onClick={this.handleModal}>Submit answers</Button>
                 <Modal show={showmodalBox} onHide={this.handleModal} backdrop="static">
-                    <Modal.Header closeButton>Modal Head</Modal.Header>
-                    <Modal.Body>
+                    <Modal.Header closeButton><b tabIndex="0">Finished Score</b></Modal.Header>
+                    <Modal.Body tabIndex="0">
                     <h1>Your score is:</h1>
                     <h3>{correctAnswers} / 10</h3>
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button onClick={this.setGameBoard}>
+                    <Button onClick={this.setGameBoard} >
                         Restart Game
                     </Button>
                     <Button onClick={this.clearGame}>
@@ -259,8 +237,6 @@ clearGame = () => {
                     </Modal.Footer>
                 </Modal>
                 </div>
-
-                {/* chromevox screen reader */}
             </>
         )
     }

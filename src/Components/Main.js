@@ -16,7 +16,7 @@ class Main extends Component {
             focusTrap: false,
         }
     }
-
+// Keeps track on the checkbox if its checked or unchecked
     checkBoxOnChange = (e) => {
         if(this.state.checked !== e.target.checked) {
             this.setState({
@@ -36,14 +36,13 @@ class Main extends Component {
         this.setState({checked: true}) 
     }
     render() {
-
         return (
                 <div className="smartphone">
                     <div className="content">
                         <header>
-                            <div id="nav">
+                            <div id="nav" >
                             <FocusTrap active={this.state.focusTrap}>
-                                <div>
+                                <div aria-label={"Menu Button"}>
                                 <input aria-label={"Close Menu Button"} type="checkbox" checked={this.state.checked} onChange={this.checkBoxOnChange.bind(this)} className="focusNavItems" />
                                 <span></span>
                                 <span></span>
