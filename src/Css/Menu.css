@@ -6,14 +6,10 @@
   user-select: none;
 }
 
-#nav a{
+#nav{
   text-decoration: none;
   color: #232323;
   transition: color 0.3s ease;
-}
-
-#nav a:hover{
-  color: tomato;
 }
 
 /*
@@ -27,7 +23,6 @@
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  
   background: #cdcdcd;
   border-radius: 3px;
   z-index: 1;
@@ -78,7 +73,7 @@
   top: -20px;
   left: -10px;
   width: 170px;
-  height: 564px;
+  height: 510px;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
@@ -125,44 +120,11 @@ span{
   .focusNavItems:focus{
     opacity: 0.1;
   }
-
-  .clickedAbout {
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-    border: 1px red solid;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 20;
-   
-    display: block;
-  }
   
   .notClicked {
     display: none;
   }
   
-  .clickedStats {
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-    border: 1px red solid;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 20;
-    
-    display: block;
-  }
-
   .focusNavItems:focus{
     outline: outset;
-    
   }
-
-  

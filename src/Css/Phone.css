@@ -65,7 +65,7 @@ h1 {
 
 main{
     position: relative;
-    height: 87.5%;
+    height: 82.7%;
     overflow-y: auto;
 }
 
@@ -154,4 +154,8 @@ main{
 
 .radioTest {
   z-index: 20;
+}
+
+p:focus{
+    border: 1px solid yellow;
 }

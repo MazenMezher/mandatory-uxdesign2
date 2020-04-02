@@ -204,7 +204,6 @@ clearGame = () => {
                         }
                 
                         let svar = x.realAnswer.replace(/&#?\w+;/g, match => entities[match]);
-                
                         let questions = x.question.replace(/&#?\w+;/g, match => entities[match]);
                         let choice1 = x.choice1.replace(/&#?\w+;/g, match => entities[match]);
                         let choice2 = x.choice2.replace(/&#?\w+;/g, match => entities[match]);
@@ -213,28 +212,31 @@ clearGame = () => {
                 
                         return (
                             <>
-            <p className="question">{questions}</p>
+            <form>
+            <p className="question" aria-label={"The question is" + questions} tabIndex="0">{questions}</p>
             <ul className="answer-ul">
+              
             <div className="answers-div">
-                <input  type="radio" id={choice1} className="radioStyle" name="question" value={choice1} onChange={() => this.onChange(svar, choice1)} />
+                <input aria-label={"radio button" + choice1} type="radio" id={choice1} className="radioStyle" name="question" value={choice1} onChange={() => this.onChange(svar, choice1)} />
                 <label htmlFor={choice1} className="labelSize">{choice1}</label>
             </div>
 
             <div className="answers-div">
-                <input  type="radio" id={choice2} className="radioStyle" name="question" value={choice2} onChange={() => this.onChange(svar, choice2)} />
+                <input aria-label={"radio button" + choice2}  type="radio" id={choice2} className="radioStyle" name="question" value={choice2} onChange={() => this.onChange(svar, choice2)} />
                 <label htmlFor={choice2} className="labelSize">{choice2}</label>
             </div>
 
             <div className="answers-div">
-                <input  type="radio" id={choice3} className="radioStyle" name="question" value={choice3} onChange={() => this.onChange(svar, choice3)} />
+                <input aria-label={"radio button" + choice3}  type="radio" id={choice3} className="radioStyle" name="question" value={choice3} onChange={() => this.onChange(svar, choice3)} />
                 <label htmlFor={choice3} className="labelSize">{choice3}</label>
             </div>
 
             <div className="answers-div">
-                <input type="radio" id={choice4} className="radioStyle" name="question" value={choice4} onChange={() => this.onChange(svar, choice4)} />
+                <input aria-label={"radio button" + choice4} type="radio" id={choice4} className="radioStyle" name="question" value={choice4} onChange={() => this.onChange(svar, choice4)} />
                 <label htmlFor={choice4} className="labelSize">{choice4}</label>
             </div>
             </ul>
+            </form>
             </>
                     )
                     })

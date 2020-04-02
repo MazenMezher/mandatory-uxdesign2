@@ -13,21 +13,28 @@ class Main extends Component {
         super(props)
         this.state = {
             checked: false,
+            focusTrap: false,
         }
-    }
-    
-    uncheck = () => {
-        this.setState({checked: true}) 
     }
 
     checkBoxOnChange = (e) => {
         if(this.state.checked !== e.target.checked) {
             this.setState({
-                checked:e.target.checked
+                checked:e.target.checked,
+                focusTrap: e.target.checked,
             })
         }
     }
+
+    changeFocusTrap = () => {
+        this.setState({
+            focusTrap: !this.state.focusTrap,
+        })
+    }
     
+    uncheck = () => {
+        this.setState({checked: true}) 
+    }
     render() {
 
         return (
@@ -35,25 +42,21 @@ class Main extends Component {
                     <div className="content">
                         <header>
                             <div id="nav">
-                                
-                            <FocusTrap active={this.state.checked}>
+                            <FocusTrap active={this.state.focusTrap}>
                                 <div>
-                                <input type="checkbox" checked={this.state.checked} onChange={this.checkBoxOnChange.bind(this)} className="focusNavItems" />
+                                <input aria-label={"Close Menu Button"} type="checkbox" checked={this.state.checked} onChange={this.checkBoxOnChange.bind(this)} className="focusNavItems" />
                                 <span></span>
                                 <span></span>
                                 <span></span>
 
                                 <ul id="menu">
-                                    <Stats />
-                                    <About />
+                                    <Stats changeFocusTrap={this.changeFocusTrap} />
+                                    <About changeFocusTrap={this.changeFocusTrap} />
                                 </ul>
-                                
                                 </div>
                             </FocusTrap> 
-                        
-                                
                             </div>
-                                <h1>Quiz Master</h1>
+                                <h1 tabIndex="0" aria-label={"Game title"}>Quiz Master</h1>
                         </header>
                             <main>
                                 <Quiz />
